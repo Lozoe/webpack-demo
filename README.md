@@ -1,6 +1,6 @@
 # webpack-demo
 
-## 环境准备
+## 一、环境准备
 
 - 命令行工具 
 - Node + Npm
@@ -23,7 +23,7 @@ npm i webpack -g
 如果有权限错误的解决方案：
 https://docs.npmjs.com/getting-started/fixing-npm-permissions
 
-## 简述Webpack
+## 二、简述Webpack
 
 - 概述
 - 版本更迭
@@ -93,4 +93,137 @@ Magic Comments(配合动态Import使用)
 
 https://www.webpackjs.com/guides/migrating/
 
+## 三、核心
+
+- Entry
+- Output
+- Loaders
+- Plugins
+
+##### 1.Entry
+
+- 代码的入口
+- 打包的入口
+- 单个或多个
+```javascript
+//3种写法
+// 单入口
+module.exports = {
+    entry: 'index.js'
+}
+// 多个文件 根据文件创建多个入口
+module.exports = {
+    entry: ['index.js', 'verdor.js']
+}
+// key value
+module.exports = {
+    entry: {
+        index: ['index.js', 'app.js'],
+        verdor: 'vendor.js'
+    }
+}
+```
+
+推荐第三种写法，前两种并不是完全知道打包中文件的名字，也没有办法识别它们，因为只是指定了entry这个属性，但是在第三种写法中每个文件有key,表示独特的chunk(代码块)
+
+对象写法的好处：
+
+> 1）知道每一个entry的key
+
+> 2）便于继续添加入口文件
+
+##### 2.Output
+
+- 打包生成的文件bundle
+- 单个或多个
+- 自定义规则
+- 配合CDN
+```javascript
+//3种写法
+// 单入口
+module.exports = {
+    entry: 'index.js',
+    output: {
+        filename: 'index.min.js'
+    }
+}
+// 多个文件
+module.exports = {
+    entry: {
+        index: 'index.js',
+        verdor: 'vendor.js'
+    },
+    output: {
+        filename: '[name].min.[hash:5].js'
+    }
+}
+```
+##### 3.Loaders
+- 处理文件
+- 转换为模块
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      { 
+        test: /\.css$/, 
+        use: 'css-loader'
+      },
+      { 
+        test: /\.ts$/, 
+        use: 'ts-loader' 
+          
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      }
+    ]
+  }
+};
+```
+常用的Loader:
+
+编译：babel-loader、ts-loader
+
+样式：style-loader、css-loader、less-loader、postcss-loader
+
+文件：file-loader、url-loader
+
+##### 4.Plugins
+
+- 参与打包的整个过程
+- 打包优化和压缩
+- 配置打包编译时的变量
+- ......
+
+
+```javascript
+const webpack = require('webpack');
+module.exports = {
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin()
+    ]
+}
+```
+
+常用的Plugins：
+
+优化：CommonsChunkPlugin、UglifyJsWebpackPlugin
+
+功能：ExtractTextWebpackPlugin(css提取打包单独的css文件)、HtmlWebpackPlugin(帮助生成html)、HotModuleReplacementPlugin(模块热更新)、CopyWebpackPlugin(帮助拷贝文件)
+
+名字解释：
+
+Chunk: 代码块， webpack打包中默认会把代码分成一个一个的代码块，有时会认为是一个代码块，当有动态懒加载配置时，会把懒加载的文件当成一个代码块，再比如commonsChunkPlugin会把不同模块公用的部分独立提取出来作为新的chunk
+
+Bundle: 一捆，一束。代码被打包过以后。
+
+Module: 模块，loaders会把一个一个的文件转化为模块，比如说一个图片或者css处理完成后即Wie一个模块。
 
