@@ -1,0 +1,28 @@
+{
+  "name": "webpack-init-demo",
+  "version": "1.0.0",
+  "description": "webpack-init-demo",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lozoe/webpack-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lozoe/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/Lozoe/webpack-demo#readme",
+  "devDependencies": {
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.10"
+  }
+}
