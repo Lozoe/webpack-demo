@@ -10,11 +10,12 @@
 mac Terminal 
 
 iTerm2: http://www.iterm2.com/
+
 zsh: http://ohmyz.sh/
 
 ##### Node
 node官网：Macintosh installer
-或者 `npm i node@xxx`
+或者 `npm i node@version`
 
 ##### Webpack
 ```
