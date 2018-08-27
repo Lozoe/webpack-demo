@@ -1,9 +1,12 @@
+const path = require('path');
 module.exports = {
     entry: {
         app: './app.js'
     },
     output: {
-        filename: '[name].[hash:5].js'
+        // filename: './dist/[name].[hash:5].js'
+        filename: 'app.js',
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
@@ -18,30 +21,31 @@ module.exports = {
     }
 }
 
-/**
- * webpack 中处理ES 6 or ES 7
- * 别忘记项目下的 babelrc
- */
-
 // module.exports = {
 //     entry: {
 //         app: './app.js'
 //     },
-
 //     output: {
-//         filename: '[name].[hash:8].js'
+//         filename: './dist/[name].[hash:5].js'
 //     },
-
 //     module: {
 //         rules: [
 //             {
 //                 test: /\.js$/,
-//                 exclude: '/node_modules/',
 //                 use: {
-//                     loader: 'babel-loader'
-//                 }
+//                     loader: 'babel-loader',
+//                     options: {
+//                         "presets": [
+//                             ["@babel/preset-env", {
+//                                 "targets": {
+//                                     "browsers": ["last 2 versions"]
+//                                 }
+//                             }]
+//                         ]
+//                     }
+//                 },
+//                 exclude: '/node_modules/'
 //             }
 //         ]
 //     }
-    
 // }
