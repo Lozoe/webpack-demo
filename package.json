@@ -1,0 +1,32 @@
+{
+  "name": "webpack-ts-demo",
+  "version": "1.0.0",
+  "description": "This is a ts demo.",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "ts-loader": "^3.2.0",
+    "typescript": "^3.0.1",
+    "typings": "^2.1.1",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lozoe/webpack-demo.git"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Lozoe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lozoe/webpack-demo/issues"
+  },
+  "homepage": "https://github.com/Lozoe/webpack-demo#readme"
+}
