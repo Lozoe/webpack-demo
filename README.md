@@ -1,230 +1,117 @@
-# webpack-demo
+# webpack-es6-demo
 
-## 一、环境准备
+### es6/7打包编译
+- Babel
+- Babel-presets
+- Babel-plugin
 
-- 命令行工具 
-- Node + Npm
-- Webpack
 
-##### 命令行工具
-mac Terminal 
-
-iTerm2: http://www.iterm2.com/
-
-zsh: http://ohmyz.sh/
-
-##### Node
-node官网：Macintosh installer
-或者 `npm i node@version`
-
-##### Webpack
+### Babel
+babel-loader(运行速度慢) babeljs.io
 ```
-npm i webpack -g
-```
-如果有权限错误的解决方案：
-https://docs.npmjs.com/getting-started/fixing-npm-permissions
+npm install babel-loader@8.0.0-beta.0 @babel-core
 
-## 二、简述Webpack
-
-- 概述
-- 版本更迭
-- 功能进化
-- 版本迁移
-
-##### 1、概述
-
-本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle。
-
-官网：https://webpack.js.org/
-中文：https://webpack.docschina.org
-github: https://github.com/webpack/webpack
-
-##### 2、版本更迭
-大概经历这样的版本迭代：
-
-- webpack v1.0.0 -- 2014.02.20
-- webpack v2.2.0 -- 2017.01.18
-- webpack v3.0.0 -- 2017.06.19
-- webpack v4.0.0 -- 2018.02.25
-
-https://github.com/webpack/webpack/releases
-##### 3、功能进化
-
-###### webpack v1
-1. 编译打包
-2. HMR（代码热更新）
-3. 代码分割
-4. 文件处理（loader,plugin）
-
-###### webpack v2
-1. Tree-Shaking
-
-打包以后的代码会体积更小，并不会把引入但是并没有使用的代码全部删除。
-
-
-2. ES Module
-
-V1必须使用 babel-loader 支持ES语法
-V2import export语法可以直接使用 webpack净化
-
-3. 动态Import
-
-V1 动态引用必须使用require.ensure
-V2 import(path)
-
-4. 新的文档
-
-###### webpack v3
-
-1. Scope Hoisting(作用域提升)
-2. Magic Comments(配合动态Import使用)
-
-Scope Hoisting(作用域提升)
-
-打包以后代码性能的提升
-老版本：
-把每一个模块都包裹在单独的一个函数的闭包中，从而实现模块系统。我们知道，闭包越多，对浏览器的损耗越大，所以封装的这些函数会使浏览器运行的性能下降。
-V3:会将所有的代码的模块的作用域提到单一的闭包的中。保证浏览器的运行速度。（rollup）
-
-Magic Comments(配合动态Import使用)
-
-配合动态Import使用，指定webpack懒加载import代码，打包后的名字不可预知，Magic Comments可以指定打包以后的文件名字。
-
-##### 版本迁移
-
-https://www.webpackjs.com/guides/migrating/
-
-## 三、核心
-
-- Entry
-- Output
-- Loaders
-- Plugins
-
-##### 1.Entry
-
-- 代码的入口
-- 打包的入口
-- 单个或多个
-```javascript
-//3种写法
-// 单入口
-module.exports = {
-    entry: 'index.js'
-}
-// 多个文件 根据文件创建多个入口
-module.exports = {
-    entry: ['index.js', 'verdor.js']
-}
-// key value
-module.exports = {
-    entry: {
-        index: ['index.js', 'app.js'],
-        verdor: 'vendor.js'
-    }
-}
+npm install babel-loader babel-core --save-dev
 ```
 
-推荐第三种写法，前两种并不是完全知道打包中文件的名字，也没有办法识别它们，因为只是指定了entry这个属性，但是在第三种写法中每个文件有key,表示独特的chunk(代码块)
-
-对象写法的好处：
-
-> 1）知道每一个entry的key
-
-> 2）便于继续添加入口文件
-
-##### 2.Output
-
-- 打包生成的文件bundle
-- 单个或多个
-- 自定义规则
-- 配合CDN
-```javascript
-//3种写法
-// 单入口
-module.exports = {
-    entry: 'index.js',
-    output: {
-        filename: 'index.min.js'
-    }
-}
-// 多个文件
-module.exports = {
-    entry: {
-        index: 'index.js',
-        verdor: 'vendor.js'
-    },
-    output: {
-        filename: '[name].min.[hash:5].js'
-    }
-}
+### 项目构建
 ```
-##### 3.Loaders
-- 处理文件
-- 转换为模块
+npm init //初始化项目
 
-```javascript
-module.exports = {
-  module: {
+npm install babel-loader babel-core --save-dev
+
+创建webpack.config.js 配置entry output loader
+```
+
+### Babel-Presets
+
+配置好babel-loader之后 需要根据babel-presets规范打包
+
+简单例举：
+```
+es2015
+es2016
+es2017
+env(经常用 包括2015-2017 以及最近的新发布的)
+babel-presets-react(自定义)
+babel-presets-stade 0-3
+```
+
+##### 安装：
+```
+npm install @babel/preset-env --save-dev（最新版本）
+或者
+npm install babel/preset-env --save-dev（普通版本）
+
+```
+##### 配置：
+```
+module: {
     rules: [
-      { 
-        test: /\.css$/, 
-        use: 'css-loader'
-      },
-      { 
-        test: /\.ts$/, 
-        use: 'ts-loader' 
-          
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {}
-          }
-        ]
-      }
-    ]
-  }
-};
-```
-常用的Loader:
-
-编译：babel-loader、ts-loader
-
-样式：style-loader、css-loader、less-loader、postcss-loader
-
-文件：file-loader、url-loader
-
-##### 4.Plugins
-
-- 参与打包的整个过程
-- 打包优化和压缩
-- 配置打包编译时的变量
-- ......
-
-
-```javascript
-const webpack = require('webpack');
-module.exports = {
-    plugins: [
-        new webpack.optimize.UglifyJsPlugin()
+        {
+            test: /\.js$/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            },
+            exclude: '/node_modules/'
+        }
     ]
 }
 ```
 
-常用的Plugins：
+targets参数：
 
-优化：CommonsChunkPlugin、UglifyJsWebpackPlugin
+根据指定的目标指定哪些语法需要编译 targets.browsers
 
-功能：ExtractTextWebpackPlugin(css提取打包单独的css文件)、HtmlWebpackPlugin(帮助生成html)、HotModuleReplacementPlugin(模块热更新)、CopyWebpackPlugin(帮助拷贝文件)
+```
+targets.browsers: 'last 2 versions'
+targets.browsers: '> 1%' 占有率百分之1 
+```
 
-名字解释：
+browserslist(github)项目，数据来自Can I Use
 
-Chunk: 代码块， webpack打包中默认会把代码分成一个一个的代码块，有时会认为是一个代码块，当有动态懒加载配置时，会把懒加载的文件当成一个代码块，再比如commonsChunkPlugin会把不同模块公用的部分独立提取出来作为新的chunk
+### 插件
 
-Bundle: 一捆，一束。代码被打包过以后。
+Babel-Polyfill
 
-Module: 模块，loaders会把一个一个的文件转化为模块，比如说一个图片或者css处理完成后即Wie一个模块。
+Babel Runtime Transform
+
+函数和方法：
+```
+Generator
+Set 
+Map
+Array.from
+Array.prototype.includes
+```
+没有被babel处理 需要借助babel-plugin
+
+##### Babel-Polyfill垫片
+
+1. 全局垫片
+2. 为应用准备
+
+使用：
+```
+npm install babel-polyfill --save
+import 'babel-polyfill'
+```
+
+##### Babel Runtime Transform
+1. 局部垫片
+2. 为框架准备
+3. 当代码中使用它时，其他的函数如果使用到es6 7方法时，会把每一个方法打包到单独的文件里面，只要引用到都会，但是使用这个插件的话会作为一个独立的整体直接打包进去，每个文件之间的多余的相同的代码不会再有
+
+
+使用：
+
+```
+npm install babel-plugin-transform-runtime --save-dev
+npm install babel-runtime --save
+```
+根目录下：.babelrc
+
 
