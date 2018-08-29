@@ -37,7 +37,7 @@ node_modules
 node_modules_old
 bin
 logs
-typings
+#typings
 _dist
 *.map
 prd
