@@ -1,5 +1,5 @@
 {
-  "name": "3-6",
+  "name": "webpack-codeSplitAndLazyLoad-demo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

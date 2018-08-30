@@ -1,5 +1,6 @@
 
 require.include('./moduleA')
+var page = 'subpageA'
 if(page === 'subPageA') {
     require.ensure(['./subPageA'], function() {
         var subPageA = require('./subPageA')
@@ -12,7 +13,7 @@ if(page === 'subPageA') {
 
 require.ensure(['lodash'], function() {
     var _ = require('lodash')
-    _.join([1, 2], 3)
+    console.log(_.join([1, 2],'*'))
 }, 'vendor')
 
 export default 'pageA'
