@@ -14,4 +14,4 @@ if (page === 'subPageA') {
         })
 }
 
-export default 'pageA'
+export default 'pageC'
