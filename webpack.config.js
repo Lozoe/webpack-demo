@@ -2,18 +2,21 @@ const path = require('path');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-    entry: './src/app.js',
+    entry: {
+        app: './src/app.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: './dist/',
-        filename: 'app.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js'
     },
     module: {
         rules: [
             {
                 test: /\.less/,
-                use: [
-                    {
+                use: ExtractTextWebpackPlugin.extract({
+                    fallback: {
                         loader: 'style-loader',
                         options: {
                             // insertInto: '#app',
@@ -21,18 +24,20 @@ module.exports = {
                             transform: './css.transform.js'
                         }
                     },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            // minimize: true
-                            modules: true,
-                            localIdentName: '[path][name]_[local]_[hash:base64:5]'
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                // minimize: true,
+                                modules: true,
+                                localIdentName: '[path][name]_[local]_[hash:base64:5]'
+                            }
+                        },
+                        {
+                            loader: 'less-loader'
                         }
-                    },
-                    {
-                        loader: 'less-loader'
-                    }
-                ]
+                    ]
+                })
             },
             {
                 test: /\.scss/,
@@ -53,7 +58,7 @@ module.exports = {
     plugins: [
         new ExtractTextWebpackPlugin({
             filename: '[name].min.css',
-            allChunks: false
+            allChunks: false // false 只会提取初始化的css(不加载异步加载的css)
         })
     ]
 };
