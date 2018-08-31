@@ -1,0 +1,12 @@
+@homecolor: gray;
+html {
+    background-color: @homecolor;
+}
+
+.box {
+    composes: big-box from './common.less'; /* 加载顺序 放在前面 */
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    background-color: #bdbdbb;
+}

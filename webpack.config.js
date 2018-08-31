@@ -1,4 +1,5 @@
 const path = require('path');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: './src/app.js',
@@ -10,13 +11,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css/,
+                test: /\.less/,
                 use: [
                     {
-                        // loader: 'style-loader'
-                        // loader: 'style-loader/url'
-                        // loader: 'style-loader/useable'
-
                         loader: 'style-loader',
                         options: {
                             // insertInto: '#app',
@@ -25,19 +22,38 @@ module.exports = {
                         }
                     },
                     {
-                        // loader: 'css-loader'
-                        // loader: 'file-loader'
-                        // loader: 'css-loader'
-
                         loader: 'css-loader',
                         options: {
                             // minimize: true
                             modules: true,
                             localIdentName: '[path][name]_[local]_[hash:base64:5]'
                         }
+                    },
+                    {
+                        loader: 'less-loader'
+                    }
+                ]
+            },
+            {
+                test: /\.scss/,
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader'
+                    },
+                    {
+                        loader: 'sass-loader'
                     }
                 ]
             }
         ]
-    }
+    },
+    plugins: [
+        new ExtractTextWebpackPlugin({
+            filename: '[name].min.css',
+            allChunks: false
+        })
+    ]
 };
