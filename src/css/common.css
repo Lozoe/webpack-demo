@@ -2,3 +2,7 @@ html {
     color: brown;
     font-size: 30px;
 }
+
+.big-box {
+    border: 2px solid #000;
+}
