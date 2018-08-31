@@ -14,11 +14,22 @@ module.exports = {
                 use: [
                     {
                         // loader: 'style-loader'
-                        loader: 'style-loader/url'
+                        // loader: 'style-loader/url'
+                        // loader: 'style-loader/useable'
+
+                        loader: 'style-loader',
+                        options: {
+                            insertInto: '#app',
+                            singleton: true,
+                            transform: './css.transform.js'
+                        }
                     },
                     {
                         // loader: 'css-loader'
-                        loader: 'file-loader'
+                        // loader: 'file-loader'
+                        // loader: 'css-loader'
+
+                        loader: 'css-loader'
                     }
                 ]
             }
