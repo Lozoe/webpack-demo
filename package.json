@@ -1,10 +1,11 @@
 {
-  "name": "webpack init project",
+  "name": "webpack-init-project",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w --progress --display-reasons --color"
   },
   "author": "",
   "license": "ISC",
