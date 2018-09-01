@@ -48,6 +48,8 @@ module.exports = {
             //     logLevel: 'debug',
             // } 
         },
+        hot: true,
+        hotOnly: true, // 不通过触发全局更新触发更新
         inline: true, // 指定模式 是否在浏览器显示打包信息
         // historyApiFallback: true
         // HTML5 histroy API rewrite
@@ -93,44 +95,41 @@ module.exports = {
 
             {
                 test: /\.less$/,
-                use: extractLess.extract(
+                use: [
                     {
-                        fallback: {
-                            loader: 'style-loader',
-                            options: {
-                                singleton: true,
-                                // transform: './css.transform.js'
-                            }
-                        },
-                        use: [
-                            {
-                                loader: 'css-loader',
-                                options: {
-                                    importLoaders: 2
-                                    // minimize: true,
-                                    // modules: true,
-                                    // localIdentName: '[path][name]_[local]_[hash:base64:5]'
-                                }
-                                // loader: 'file-loader'
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    ident: 'postcss',
-                                    plugins: [
-                                        require('postcss-sprites')({
-                                            spritePath: 'dist/assets/imgs/sprites',
-                                            retina: true
-                                        }),      
-                                        require('postcss-cssnext')()
-                                    ]
-                                }
-                            },
-                            {
-                                loader: 'less-loader'
-                            }
-                        ]
-                    })
+                        loader: 'style-loader',
+                        options: {
+                            singleton: true,
+                            // transform: './css.transform.js'
+                        }
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 2
+                            // minimize: true,
+                            // modules: true,
+                            // localIdentName: '[path][name]_[local]_[hash:base64:5]'
+                        }
+                        // loader: 'file-loader'
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            ident: 'postcss',
+                            plugins: [
+                                require('postcss-sprites')({
+                                    spritePath: 'dist/assets/imgs/sprites',
+                                    retina: true
+                                }),      
+                                require('postcss-cssnext')()
+                            ]
+                        }
+                    },
+                    {
+                        loader: 'less-loader'
+                    }
+                ]
             },
 
             {
@@ -231,6 +230,9 @@ module.exports = {
 
         new webpack.optimize.UglifyJsPlugin(),
 
-        new CleanWebpackPlugin(['dist'])
+        new CleanWebpackPlugin(['dist']),
+
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ]
 }
