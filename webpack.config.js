@@ -19,7 +19,33 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         filename: 'js/[name]-bundle-[hash:5].js'
+    },
+
+    devServer: {
+        port: 9001,
+        inline: true, // 指定模式 是否在浏览器显示打包信息
+        // historyApiFallback: true
+        // HTML5 histroy API rewrite
+        historyApiFallback: {
+            rewrites: [
+                {   
+                    // 什么样的路径
+                    from: 'page/a',
+                    // 转去哪里
+                    to: 'pages/a.html'
+                },
+                {   
+                    // 什么样的路径
+                    from: /^\/([a-zA-Z0-9]+\/?)([a-zA-Z0-9]+)/,
+                    // 转去哪里
+                    to: function (context) {
+                        return '/' + context.match[1] + context.match[2] + '.html'
+                    }
+                }
+            ]
+        }
     },
 
     resolve: {
