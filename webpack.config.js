@@ -23,6 +23,10 @@ module.exports = {
         filename: 'js/[name]-bundle-[hash:5].js'
     },
 
+    // devtool: 'eval',
+    // devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
+
     devServer: {
         port: 9001,
         proxy: {
@@ -99,14 +103,16 @@ module.exports = {
                     {
                         loader: 'style-loader',
                         options: {
-                            singleton: true,
+                            // singleton: true,
+                            sourceMap: true
                             // transform: './css.transform.js'
                         }
                     },
                     {
                         loader: 'css-loader',
                         options: {
-                            importLoaders: 2
+                            importLoaders: 2,
+                            sourceMap: true
                             // minimize: true,
                             // modules: true,
                             // localIdentName: '[path][name]_[local]_[hash:base64:5]'
@@ -117,17 +123,21 @@ module.exports = {
                         loader: 'postcss-loader',
                         options: {
                             ident: 'postcss',
+                            sourceMap: true,
                             plugins: [
-                                require('postcss-sprites')({
-                                    spritePath: 'dist/assets/imgs/sprites',
-                                    retina: true
-                                }),      
+                                // require('postcss-sprites')({
+                                //     spritePath: 'dist/assets/imgs/sprites',
+                                //     retina: true
+                                // }),      
                                 require('postcss-cssnext')()
                             ]
                         }
                     },
                     {
-                        loader: 'less-loader'
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
                 ]
             },
@@ -135,30 +145,30 @@ module.exports = {
             {
                 test: /\.(png|jpg|jpeg|gif)$/,
                 use: [
-                    // {
-                    //     loader: 'file-loader',
-                    //     options: {
-                    //         publicPath: '',
-                    //         outputPath: 'dist/',
-                    //         useRelativePath: true
-                    //     }
-                    // }
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
-                            name: '[name]-[hash:5].[ext]',
-                            limit: 1000,
-                            outputPath: 'assets/imgs/'
-                        }
-                    },
-                    {
-                        loader: 'img-loader',
-                        options: {
-                            pngquant: {
-                                quality: 80
-                            }
+                            publicPath: '',
+                            outputPath: 'dist/',
+                            useRelativePath: true
                         }
                     }
+                    // {
+                    //     loader: 'url-loader',
+                    //     options: {
+                    //         name: '[name]-[hash:5].[ext]',
+                    //         limit: 1000,
+                    //         outputPath: 'assets/imgs/'
+                    //     }
+                    // },
+                    // {
+                    //     loader: 'img-loader',
+                    //     options: {
+                    //         pngquant: {
+                    //             quality: 80
+                    //         }
+                    //     }
+                    // }
                 ]
             },
 

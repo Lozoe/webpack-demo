@@ -114,3 +114,34 @@ module.hot.accept // 1、依赖 2、以来更新后执行的回调
 module.hot.decline // 拒绝给一些需要依赖的模块来更新， 接受一个模块或者数组多个模块
 ```
 
+### source-map
+
+- JS-source-map
+- CSS-source-map
+
+```javascript
+<!-- JS 三种配置方式 -->
+Devtool
+webpack.SourceMapDevPluginTool
+webpack.EvalSourceMapDevPluginTool
+
+dev:
+eval
+eval-source-map
+cheap-eval-source-map
+cheap-module-eval-source-map
+
+prod:
+source-map
+hidden-source-map
+nosource-source-map
+```
+
+```javascript
+<!-- CSS 需要开启插件 source-map -->
+css-loader.option.sourceMap
+less-loader.option.sourceMap
+sass-loader.option.sourceMap
+```
+
+
