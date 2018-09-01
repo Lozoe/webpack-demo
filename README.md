@@ -101,3 +101,20 @@ devServer: {
         }
     }
 ```
+
+##### Module Hot Reloading
+
+- 保持应用的数据状态（tab页切换了 组件的状态展开到哪里 请求了哪些数据）
+- 节省调试时间
+- 样式调试更快
+```javascript
+devServer.hot true 
+webpack.hotModuleReplacementPlugin 
+模块的相对路径
+webapck.NamedModulesPlugin
+```
+```javascript
+module.hot
+module.hot.accept // 1、依赖 2、以来更新后执行的回调
+module.hot.decline // 拒绝给一些需要依赖的模块来更新， 接受一个模块或者数组多个模块
+```
