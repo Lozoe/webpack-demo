@@ -1,16 +1,30 @@
-@homecolor: gray;
+@homecolor: #ff3333;
+
 html {
-    background-color: @homecolor;
+    background: @homecolor;
 }
 
 .box {
-    composes: big-box from './common.less'; /* 加载顺序 放在前面 */
     height: 200px;
     width: 200px;
-    border-radius: 5px;
-    background-color: #bdbdbb;
-    transition: transform 1s; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    border-radius: 4px;
+    background: #333;
+}
+
+.bigBox {
+    height: 400px;
+    width: 400px;
+    border: 5px;
+}
+
+.smallBox {
+    height: 400px;
+    width: 400px;
+    border: 5px;
+}
+
+.litteBox {
+    height: 400px;
+    width: 400px;
+    border: 5px;
 }

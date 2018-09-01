@@ -1,31 +1,12 @@
-// import base from './css/base.less'
-// import common from './css/common.less'
-
-// var flag = false
-// setInterval(function(){
-//     if (flag) {
-//         common.unuse()
-//     } else {
-//         common.use()
-//     }
-//     flag = !flag
-// }, 1000)
-
-// let $app = document.getElementById('app')
-// $app.innerHTML = `<div class="${base.box}"></div>`
-
 import base from './css/base.less'
-import common from './css/common.less'
-import a from './css/a.scss'
 
 var app = document.getElementById('app');
+var div = document.createElement('div');
+div.className = 'smallBox'
+app.appendChild(div)
 
-// css Modules 的引用方法
-app.innerHTML = '<div class="'+ base.box +'"></div>'
+import { a } from './common/util'
+console.log(a())
 
-import(/* webpackChunkName:'a' */ './components/a').then(function(a) {
-    console.log(a)
-})
-
-// var flag = true;
-
+import { chunk } from 'lodash-es'
+console.log(chunk([1,2,3,4,5,6,7], 2))
