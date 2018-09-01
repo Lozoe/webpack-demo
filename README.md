@@ -1,10 +1,5 @@
 # webpack-init-demo
 
-### tree-shaking
-```javascript
-webpack watch mode
-webpack-dev-server
-express + webpack-dev-middleware
 ```
 ### webpack watch mode
 ```javascript
@@ -118,3 +113,4 @@ module.hot
 module.hot.accept // 1、依赖 2、以来更新后执行的回调
 module.hot.decline // 拒绝给一些需要依赖的模块来更新， 接受一个模块或者数组多个模块
 ```
+
