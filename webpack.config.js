@@ -29,6 +29,7 @@ module.exports = {
 
     devServer: {
         port: 9001,
+        overlay: true,
         proxy: {
             // '/api': {
             //     target: 'https://m.weibo.cn',
@@ -87,11 +88,19 @@ module.exports = {
         rules: [
             {
                 test:/\.js$/,
+                include: [path.resolve(__dirname, 'src')],
+                exclude: [path.resolve(__dirname, 'src/libs')],
                 use: [
                     {
                         loader: 'babel-loader',
                         options: {
                             presets: ['env']
+                        }
+                    },
+                    {
+                        loader: 'eslint-loader',
+                        options: {
+                            formatter: require('eslint-friendly-formatter')
                         }
                     }
                 ]
@@ -188,17 +197,17 @@ module.exports = {
                 ]
             },
 
-            {
-                test: path.resolve(__dirname, 'src/app.js'),
-                use: [
-                    {
-                        loader: 'imports-loader',
-                        options: {
-                            $: 'jquery'
-                        }
-                    }
-                ]
-            },
+            // {
+            //     test: path.resolve(__dirname, 'src/app.js'),
+            //     use: [
+            //         {
+            //             loader: 'imports-loader',
+            //             options: {
+            //                 $: 'jquery'
+            //             }
+            //         }
+            //     ]
+            // },
 
             {
                 test: /\.html$/,
@@ -238,11 +247,15 @@ module.exports = {
             }
         }),
 
-        new webpack.optimize.UglifyJsPlugin(),
+        // new webpack.optimize.UglifyJsPlugin(),
 
         new CleanWebpackPlugin(['dist']),
 
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
+        new webpack.NamedModulesPlugin(),
+
+        new webpack.ProvidePlugin({
+            $: 'jquery'
+        })
     ]
 }

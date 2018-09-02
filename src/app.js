@@ -1,8 +1,8 @@
 import './css/base.less'
 
-import { a } from "./common/util";
-// import { renderA } from "./components/a";
-import { componentA } from "./components/a";
+import { a } from './common/util'
+// import { renderA } from './components/a'
+import { componentA } from './components/a'
 a()
 
 var app = document.getElementById('app')
@@ -22,7 +22,6 @@ $.get('/comments/show', {
 }, function (data) {
     console.log(data)
 })
-
 
 // $.get('/aj/video/playstatistics', {
 //     ajwvr: '6'
