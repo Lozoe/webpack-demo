@@ -29,7 +29,7 @@ $.get('/comments/show', {
 //     console.log(data)
 // })
 
-$.get('/msg/index', {
+$.get('/comments/msg/index', {
     format: 'cards'
 }, function (data) {
     console.log(data, 1)

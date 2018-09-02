@@ -214,3 +214,19 @@ webpack.common.conf.js
 
 npm i webpack-merge --save-dev
 ```
+
+### 使用middleware搭建
+
+##### 依赖
+```
+Express or Koa
+webapck-dev-middleware
+webapck-hot-middleware
+http-proxy-middleware
+connect-history-middleware 地址rewrite
+opn 打开调试页面
+
+npm i express opn webapck-dev-middleware webapck-hot-middleware http-proxy-middleware connect-history-api-fallback --save-dev
+```
+
+
