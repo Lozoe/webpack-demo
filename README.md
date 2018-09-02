@@ -185,3 +185,32 @@ npm i eslint eslint-loader eslint-plugin-html eslint-friendly-formatter --save-d
 
 npm i eslint-config-standard eslint-plugin-promise eslint-plugin-node eslint-plugin-import eslint-plugin-standard --save-dev
 ```
+### 开发环境 & 生产环境
+
+开发环境：
+- 模块热更新
+- sourceMap
+- 接口代理
+- 代码规范检查
+
+生产环境：
+- 提取公用代码
+- 压缩混淆
+- 文件压缩 base64编码
+- 去除无用的代码
+
+共同点：
+- 入口一致
+- 代码处理一致（loader）
+- 解析配置一致
+
+### 区分开发环境和生产环境
+```
+webpack-merge
+
+webpack.dev.conf.js
+webpack.prod.conf.js
+webpack.common.conf.js
+
+npm i webpack-merge --save-dev
+```
