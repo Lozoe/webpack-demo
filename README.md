@@ -144,4 +144,44 @@ less-loader.option.sourceMap
 sass-loader.option.sourceMap
 ```
 
+### Eslint
+```javascript
+eslint
+eslint-loader // 配置
+eslint-plugin-html // script标签里面的js代码
+eslint-frendly-formater // 报错时输出的格式
+```
+### Eslint配置
+##### eslint
+```javascript
+webpack config // 新增eslingtloader
+.eslintrc.* // eslint规则配置
+或者package.json eslintConfig
 
+Jsvascript statndad Style (https://standardjs.com/)
+eslint-config-standard
+eslint-plugin-promise
+eslint-plugin-standard
+eslint-plugin-import
+eslint-plugin-node
+eslint-plugin-xxx github
+
+```
+##### eslint-loader 
+
+```javascript
+<!--eslint-loader-->
+options.failOnWarrning 不检查
+options.failOnError 
+options.formatter 第三方代码友好提示
+options.outputReport
+
+<!--devServer.overlay 浏览器看lint提示-->
+```
+
+### Eslint安装
+```javascript
+npm i eslint eslint-loader eslint-plugin-html eslint-friendly-formatter --save-dev
+
+npm i eslint-config-standard eslint-plugin-promise eslint-plugin-node eslint-plugin-import eslint-plugin-standard --save-dev
+```
