@@ -1,30 +1,28 @@
-# webpack-文件处理-demo
+# webpack-thirdjs-demo
 
-### 文件处理
+### 方法
 ```javascript
-图片处理
-字体文件
-第三方JS库
+cdn 直接引 入https://www.bootcdn.cn/
+webpack.providePlugin
+imports-loader
+window
 ```
-### 图片处理
+### webpack.providePlugin
 ```
-CSS引入图片
-合成雪碧图
-压缩图片
-base64编码
-```
-file-loader
-url-loader base64
-img-loader 压缩
-postcss-sprites雪碧图
+npm i jquery --save
+new Webpack.ProvidePlugin({
+    $: 'jquery'
+})
 
-
-### 安装
-```
-npm i file-loader url-loader img-loader postcss-sprites --save-dev
+//如果不是npm 模块，而是本地 可是使用alias
+resolve: {
+    alias: {
+        jquery$: path.resolve(__dirname, 'src/libs/jquery.min.js') //$ 确定只是把jquery关键字解析到某一个目录的文件下，不是解析到某一个目录 确切匹配
+    }
+},
 ```
 
-### CSS引入图片
-```javascript
-npm i webpack-bundle-analyzer --save-dev
+### imports-loader
+```
+npm i imports-loader --save-dev
 ```
