@@ -90,8 +90,6 @@ const pages = [
     })
 ]
 
-// console.log(merge([baseConfig].concat(pages)))
+console.log(merge([baseConfig].concat(pages)))
 
-// module.exports = merge([baseConfig].concat(pages))
-console.log(pages.map(page => merge(baseConfig, page)))
-module.exports = pages.map(page => merge(baseConfig, page))
+module.exports = merge([baseConfig].concat(pages))

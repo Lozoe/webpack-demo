@@ -1,17 +1,25 @@
 {
-  "name": "long cache optimization",
+  "name": "multi page",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "node_modules/parallel-webpack/bin/run.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^3.10.0"
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "^3.2.0",
+    "parallel-webpack": "^2.3.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^3.12.0",
+    "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "react": "^16.2.0"
+    "react": "^16.5.0"
   }
 }
