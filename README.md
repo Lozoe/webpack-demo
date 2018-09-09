@@ -32,3 +32,32 @@ resolve: {
 ```
 npm i imports-loader --save-dev
 ```
+
+### 引入图片
+```js
+html-loader 指定html参数有哪些参数是交给webpack处理的
+options
+   attrs: [img:src]
+
+npm i html-loader --save-dev
+
+<!--html-->
+<img src="src/assets/imgs/elephant.png" data-src="src/assets/imgs/elephant.png" alt="">
+
+{
+    test:/\.html$/,
+    use: [
+        {
+            loader: 'html-loader',
+            options: {
+                attrs: ['img:src', 'img:data-src']
+            }
+        }
+    ]
+}
+
+或者：
+<img src="assets/imgs/elephant.min.png" data-src="src/assets/imgs/elephant.png"/>
+
+```
+

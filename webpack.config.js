@@ -18,6 +18,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         // publicPath: 'dist/',
+        // publicPath: '/',
         filename: '[name]-bundle-[hash:5].js',
         // filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
@@ -90,11 +91,15 @@ module.exports = {
                         loader: 'url-loader',
                         options: {
                             // name: '[name]-[hash:5].[ext]',
-                            name: '[name].min.[ext]',
+                            /* name: '[name].min.[ext]',
                             limit: 5000,
                             publicPath: '',
                             outputPath: 'dist/', // output publicPath
-                            useRelativePath: true
+                            useRelativePath: true */
+
+                            name: '[name].min.[ext]',
+                            limit: 1000,
+                            outputPath: 'assets/imgs/'
                         }
                     },
                     {
@@ -132,7 +137,18 @@ module.exports = {
                         }
                     }
                 ]
-            }
+            },
+            // {
+            //     test:/\.html$/,
+            //     use: [
+            //         {
+            //             loader: 'html-loader',
+            //             options: {
+            //                 attrs: ['img:src', 'img:data-src']
+            //             }
+            //         }
+            //     ]
+            // },
         ]
     },
 
