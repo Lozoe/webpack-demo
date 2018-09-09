@@ -16,6 +16,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+// import Proxy from '@/api/proxy'
 export default {
   data: () => {
     return {
@@ -42,6 +43,12 @@ export default {
       })
       this.newTodo.text = ''
     }
+  },
+
+  mounted () {
+    // Proxy.a({m: 1, n: 2}, res => {
+    //   console.log(res)
+    // })
   }
 }
 </script>
