@@ -4,6 +4,7 @@ var PurifyCSS = require('purifycss-webpack')
 var glob = require('glob-all')
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HtmlInlinkChunkPlugin = require('html-webpack-inline-chunk-plugin')
 
 // var extractLess = new ExtractTextWebpackPlugin({
 //     // filename: 'css/[name]-bundle-[hash:5].css',
@@ -33,6 +34,17 @@ module.exports = {
 
     module: {
         rules: [
+            {
+                test:/\.js$/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: ['env']
+                        }
+                    }
+                ]
+            },
             {
                 test: /\.less$/,
                 use: ExtractTextWebpackPlugin.extract(
@@ -168,9 +180,21 @@ module.exports = {
             ])
         }),
 
+        new Webpack.optimize.CommonsChunkPlugin({
+            name: 'manifest'
+        }),
+
+        new HtmlInlinkChunkPlugin({
+            inlineChunks: ['manifest']
+        }),
+
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
+            // chunks: ['app'],
+            minify: {
+                collapseWhitespace: true
+            }
             // inject: false
         }),
 
