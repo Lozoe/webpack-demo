@@ -64,7 +64,7 @@ npm i html-loader --save-dev
 ### 优化
 
 ```js
-提前载入webpack加载代码
+提前载入webpack加载代码 减少浏览器请求
 inline-webpack-manifest-plugin
 html-webpack-inline-chunk-plugin
 
