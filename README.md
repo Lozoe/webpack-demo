@@ -1,28 +1,48 @@
-# webpack-long cache-demo
+# 多页应用
 
-### 长缓存优化
-```javascript
-<!--一、改变app,vendor变化-->
-提取vendor
-hash->chunkHash
-提取Webpack runtime
-<!--二、引入新模块  模块顺序变化， vendor hash变化-->
-思路：给chunks & module模块使用name标识 而非ID
-NamedChunkedPlugin
-NamedModulesPlugin
-<!--三、动态引入新模块 ，vendor hash变化-->
-定义动态模块的chunkName
+### 多页面应用
+#### 特点
+- 多入口 entry
+- 多页面html
+- 每个页面不同的chunk
+- 每个页面不同的参数
 
-import(/* webpackChunkName: 'async' */'./async').then(function(a) {
-    console.log(a)
-}) 
-```
-### 总结
+#### 方法
+多配置
+单配置
 
-- 独立打包vendor 分离第三方插件和业务代码 完全独立打包vendor
-- 抽出manifest(webpack runtime webpack打包时runtime代码会变化，为了让runtime的变化不影响vendor， 可以抽取 并且直接inline到html)  
-- NamedChunkedPlugin
-- NamedModulesPlugin (给定chunk和module不再是由webpack随机分配的从[0]-...的id,而是确切的不会随代码变化或者顺序变化而变化的id)
-- 动态载入模块给定模块名称
+##### 多配置
+webpack 3.1.0
+parallel-webpack
 
-通过以上方法保证在打包第三方代码或者公用代码时，尽可能保证使用长缓存，保证版本号不再变化，保证用户浏览网站时尽可能使用缓存，加快访问速度和性能。
+parallel-webpack --watch
+parallel-webpack --config
+
+优点：
+使用parallel-webpack提高打包速度
+配置更加独立、灵活
+
+缺点：不能多页面之间共享代码
+
+webpack-merge 多配置合并成一个
+webpack
+html-webpack-plugin 生成html页面
+clean-webpack-plugin 删除之前的打包目录 重新打包
+extract-text-webpack-plugin 
+
+npm i webpack-merge webpack html-webpack-plugin clean-webpack-plugin extract-text-webpack-plugin --save-dev
+
+npm i style-loader css-loader --save-dev
+
+npm i parallel-webpack --save-dev  
+node_modules/parallel-webpack/bin/run.js
+
+##### 单配置
+优点：
+可以共享各个entry之间的公用代码
+
+缺点：
+打包速度比较慢输出的内容比较复杂
+
+webpack --config webpack.config.single.js
+
