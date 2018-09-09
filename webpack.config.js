@@ -3,10 +3,12 @@ var Webpack = require('webpack')
 var PurifyCSS = require('purifycss-webpack')
 var glob = require('glob-all')
 var ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var extractLess = new ExtractTextWebpackPlugin({
-    filename: 'css/[name].bundle.css',
-})
+// var extractLess = new ExtractTextWebpackPlugin({
+//     // filename: 'css/[name]-bundle-[hash:5].css',
+//     filename: 'css/[name].bundle.css',
+// })
 
 module.exports = {
     entry: {
@@ -15,9 +17,11 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, 'dist'),
-        publicPath: 'dist/',
+        // publicPath: 'dist/',
+        // filename: '[name]-bundle-[hash:5].js',
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
+        
     },
 
     resolve: {
@@ -30,7 +34,7 @@ module.exports = {
         rules: [
             {
                 test: /\.less$/,
-                use: extractLess.extract(
+                use: ExtractTextWebpackPlugin.extract(
                     {
                         fallback: {
                             loader: 'style-loader',
@@ -135,7 +139,8 @@ module.exports = {
     plugins: [
         // extractLess,
         new ExtractTextWebpackPlugin({
-            filename: '[name].min.css',
+            // filename: '[name]-bundle-[hash:5].css',
+            filename: '[name].bundle.css',
             allChunks: false
         }),
 
@@ -145,6 +150,12 @@ module.exports = {
                 path.join(__dirname, './*.html'),
                 path.join(__dirname, './src/*.js')
             ])
+        }),
+
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: './index.html',
+            inject: false
         }),
 
         // new Webpack.ProvidePlugin({

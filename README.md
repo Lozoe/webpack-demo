@@ -1,15 +1,21 @@
-# webpack-thirdjs-demo
+# webpack-html-demo
 
 ### 方法
 ```javascript
-cdn 直接引 入https://www.bootcdn.cn/
-webpack.providePlugin
-imports-loader
-window
+自动生成html
+场景优化
+
 ```
-### webpack.providePlugin
+### 自动生成html
+HtmlWebpackPlugin
+options
+    template （自己加loader）
+    filename
+    minify
+    chunks 指定entrychunk excludeChunks
+    inject
 ```
-npm i jquery --save
+npm i html-webpack-plugin --save-dev
 new Webpack.ProvidePlugin({
     $: 'jquery'
 })
