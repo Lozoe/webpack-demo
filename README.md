@@ -61,3 +61,15 @@ npm i html-loader --save-dev
 
 ```
 
+### 优化
+
+```js
+提前载入webpack加载代码
+inline-webpack-manifest-plugin
+html-webpack-inline-chunk-plugin
+
+npm i html-webpack-inline-chunk-plugin --save-dev
+npm i babel-core babel-loader babel-preset-env --save-dev
+
+```
+
