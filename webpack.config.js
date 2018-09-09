@@ -97,10 +97,26 @@ module.exports = {
                     }
                 ]
             },
+            {
+                test:/\.(eot|woff2?|ttf|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            name: '[name]-[hash:5].[ext]',
+                            limit: 5000,
+                            publicPath: '',
+                            outputPath: 'dist/',
+                            useRelativePath: true
+                        }
+                    }
+                ]
+            }
         ]
     },
 
     plugins: [
+        // extractLess,
         new ExtractTextWebpackPlugin({
             filename: '[name].min.css',
             allChunks: false

@@ -1,5 +1,5 @@
-// import base from './css/base.less'
-import base from './css/common.less'
+import base from './css/base.less'
+// import base from './css/common.less'
 
 var app = document.getElementById('app');
 var div = document.createElement('div');
