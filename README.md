@@ -1,46 +1,30 @@
-# webpack-tree-shaking-demo
+# webpack-文件处理-demo
 
-### tree-shaking
+### 文件处理
 ```javascript
-JS Tree Shaking
-CSS Tree Shaking
+图片处理
+字体文件
+第三方JS库
 ```
-### 使用场景
-- 常规优化 代码体积更小，用户加载更快
-- 引入第三方库 比如lodash boostrap moment
+### 图片处理
+```
+CSS引入图片
+合成雪碧图
+压缩图片
+base64编码
+```
+file-loader
+url-loader base64
+img-loader 压缩
+postcss-sprites雪碧图
 
-### JS tree-shaking 配置
-本地Tree Shaking:
 
-new Webpack.optimize.UglifyJsPlugin()
-
-第三方库：
-比如lodash
-npm i lodash --save 72kb
-npm i lodash-es --save 139kb
-npm i babel-plugin-lodash --save-dev
-npm i babel-loader babel-core babel-preset-env --save-dev
-
-```javascript
-{
-    test: /\.js$/,
-    use: [
-        {
-            loader: 'babel-loader',
-            options: {
-                presets: ['env'],
-                plugins: ['lodash']
-            }
-        }
-    ]
-}
+### 安装
+```
+npm i file-loader url-loader img-loader postcss-sprites --save-dev
 ```
 
-### CSS tree-shaking
+### CSS引入图片
 ```javascript
-Purify CSS
-https://github.com/purifycss/purifycss
-
-purify-webpack
-
+npm i webpack-bundle-analyzer --save-dev
 ```
