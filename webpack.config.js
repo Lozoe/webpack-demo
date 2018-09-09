@@ -18,8 +18,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         // publicPath: 'dist/',
-        // filename: '[name]-bundle-[hash:5].js',
-        filename: '[name].bundle.js',
+        filename: '[name]-bundle-[hash:5].js',
+        // filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js'
         
     },
@@ -139,8 +139,8 @@ module.exports = {
     plugins: [
         // extractLess,
         new ExtractTextWebpackPlugin({
-            // filename: '[name]-bundle-[hash:5].css',
-            filename: '[name].bundle.css',
+            filename: '[name]-bundle-[hash:5].css',
+            // filename: '[name].bundle.css',
             allChunks: false
         }),
 
@@ -155,7 +155,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
-            inject: false
+            // inject: false
         }),
 
         // new Webpack.ProvidePlugin({
