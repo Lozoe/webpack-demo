@@ -27,8 +27,8 @@ export class Proxy {
 
   constructor (config) {
     if (!config) return
-    for (let value of Object.keys(config).values()) {
-      this._config[value] = this[setConfig](value)
+    for (let value of Object.keys(config)) {
+      this._config[value] = this[setConfig](config[value])
       this[value] = (name => {
         return (data, callback, errorCallback, scope) => {
           if (!this._config[name]) return
@@ -160,5 +160,5 @@ export class Proxy {
     XHR.send(data)
   }
 }
-debugger
+
 export default Proxy.create(constants.API)

@@ -1,8 +1,6 @@
 export const DEFAUT_REQ_DATA = {
-  a: {
-    url: 'a.do',
-    useDefaultData: true
-  }
+  aparam: 'a',
+  bparam: 'b'
 }
 
 export const API = {
