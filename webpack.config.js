@@ -20,6 +20,12 @@ module.exports = {
         chunkFilename: '[name].bundle.js'
     },
 
+    resolve: {
+        alias: {
+            jquery$: path.resolve(__dirname, 'src/libs/jquery.min.js') //$ 确定只是把jquery关键字解析到某一个目录的文件下，不是解析到某一个目录 确切匹配
+        }
+    },
+
     module: {
         rules: [
             {
@@ -111,6 +117,17 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: path.resolve(__dirname, 'src/app.js'),
+                use: [
+                    {
+                        loader: 'imports-loader',
+                        options: {
+                            $: 'jquery'
+                        }
+                    }
+                ]
             }
         ]
     },
@@ -129,6 +146,10 @@ module.exports = {
                 path.join(__dirname, './src/*.js')
             ])
         }),
+
+        // new Webpack.ProvidePlugin({
+        //     $: 'jquery'
+        // }),
 
         // JS Tree shaking
         new Webpack.optimize.UglifyJsPlugin()

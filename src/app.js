@@ -6,6 +6,8 @@ var div = document.createElement('div');
 div.className = 'smallBox'
 app.appendChild(div)
 
+$('div').addClass('test')
+
 import { a } from './common/util'
 console.log(a())
 
