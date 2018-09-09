@@ -1,48 +1,30 @@
-# 多页应用
+# my-vue-project
 
-### 多页面应用
-#### 特点
-- 多入口 entry
-- 多页面html
-- 每个页面不同的chunk
-- 每个页面不同的参数
+> A Vue.js project
 
-#### 方法
-多配置
-单配置
+## Build Setup
 
-##### 多配置
-webpack 3.1.0
-parallel-webpack
+``` bash
+# install dependencies
+npm install
 
-parallel-webpack --watch
-parallel-webpack --config
+# serve with hot reload at localhost:8080
+npm run dev
 
-优点：
-使用parallel-webpack提高打包速度
-配置更加独立、灵活
+# build for production with minification
+npm run build
 
-缺点：不能多页面之间共享代码
+# build for production and view the bundle analyzer report
+npm run build --report
 
-webpack-merge 多配置合并成一个
-webpack
-html-webpack-plugin 生成html页面
-clean-webpack-plugin 删除之前的打包目录 重新打包
-extract-text-webpack-plugin 
+# run unit tests
+npm run unit
 
-npm i webpack-merge webpack html-webpack-plugin clean-webpack-plugin extract-text-webpack-plugin --save-dev
+# run e2e tests
+npm run e2e
 
-npm i style-loader css-loader --save-dev
+# run all tests
+npm test
+```
 
-npm i parallel-webpack --save-dev  
-node_modules/parallel-webpack/bin/run.js
-
-##### 单配置
-优点：
-可以共享各个entry之间的公用代码
-
-缺点：
-打包速度比较慢输出的内容比较复杂
-
-webpack --config webpack.config.single.js
-
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
