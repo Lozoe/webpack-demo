@@ -41,33 +41,33 @@ module.exports = {
     optimization: {
         // minimize: false
         minimizer: [
-            new UglifyJs({
-                uglifyOptions: {
-                    keep_classnames: true,
-                    keep_fnames: true,
+            // new UglifyJs({
+            //     uglifyOptions: {
+            //         keep_classnames: true,
+            //         keep_fnames: true,
 
-                    ecma: 6,
-                    cache: true,
-                    parallel: true
-                }
-            })
+            //         ecma: 6,
+            //         cache: true,
+            //         parallel: true
+            //     }
+            // })
         ],
 
         runtimeChunk: true, // true, false, single, multiple
 
-        // splitChunks: {
-        //     name: true,
-        //     minSize: 0,
-        //     cacheGroups: {
-        //         preact: {
-        //             test: /preact/,
-        //             chunks: 'initial'
-        //         },
-        //         lodash: {
-        //             test: /lodash/, 
-        //             chunks: 'all'
-        //         }
-        //     }
-        // }
+        splitChunks: {
+            name: true,
+            minSize: 0,
+            cacheGroups: {
+                preact: {
+                    test: /preact/,   //  /preact/, /(preact)|(lodash)/ 全家桶
+                    chunks: 'initial' // preact初始化时候就需要加载
+                },
+                lodash: {
+                    test: /lodash/, 
+                    chunks: 'all'
+                }
+            }
+        }
     }
 }

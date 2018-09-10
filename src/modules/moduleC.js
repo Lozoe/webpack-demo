@@ -1,4 +1,4 @@
-// import { minus } from './moduleA'
-// minus(4, 2)
+import { minus } from './moduleA'
+minus(5, 2)
 
 export default 'this is C'
