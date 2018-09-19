@@ -6,19 +6,25 @@
     <router-link to="countdown"> Countdown </router-link>
     <h1 class="title">this is countdown</h1>
     <Countdown :time="time"></Countdown>
+    <CountdownButton :initStr="initStr" :second="second" :runStr="runStr" :resetStr="resetStr" @stop="onCountdownEnd" @click.native="nativeClick" v-model="start"></CountdownButton>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Countdown from '@/components/countdown'
+import Countdown from '@/components/Countdown'
+import CountdownButton from '@/components/CountdownButton'
 export default {
   data: () => {
     return {
-      // time: 60
+      start: false,
+      initStr: '倒计时开始',
+      second: 3,
+      runStr: `{%s}秒结束`,
+      resetStr: '重新点过'
     }
   },
-  components: { Countdown },
+  components: { Countdown, CountdownButton },
   computed: {
     ...mapGetters([
       'time'
@@ -33,6 +39,13 @@ export default {
     ]),
     updateCountDownTime (time) {
       this.updateTime(time)
+    },
+    onCountdownEnd () {
+
+    },
+    nativeClick () {
+      this.start = true
+      console.log('native click')
     }
   },
 
