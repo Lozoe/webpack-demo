@@ -15,5 +15,9 @@ export default {
         state.todos.splice(index, 1)
       }
     })
+  },
+
+  [Types.UPDATETIME] (state, time) {
+    state.time = time
   }
 }

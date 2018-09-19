@@ -7,5 +7,9 @@ export default {
 
   delTodo ({ commit }, todo) {
     commit(Types.DELTODO, todo)
+  },
+
+  updateTime ({ commit }, time) {
+    commit(Types.UPDATETIME, time)
   }
 }

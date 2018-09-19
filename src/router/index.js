@@ -14,6 +14,11 @@ export default new Router({
       path: '/todos',
       name: 'Todos',
       component: () => import(/* webpackChunkName: 'todo' */'@/pages/Todos')
+    },
+    {
+      path: '/countdown',
+      name: 'countdown',
+      component: () => import(/* webpackChunkName: 'countdown' */'@/pages/Countdown')
     }
   ]
 })

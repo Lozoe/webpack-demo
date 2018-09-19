@@ -1,2 +1,3 @@
 export const ADDTODO = 'ADDTODO'
 export const DELTODO = 'DELTODO'
+export const UPDATETIME = 'UPDATETIME'

@@ -18,7 +18,8 @@ export default new Vuex.Store({
         id: 2,
         text: 'Two'
       }
-    ]
+    ],
+    time: 30
   },
   getters,
   actions,
