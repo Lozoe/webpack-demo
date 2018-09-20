@@ -57,6 +57,7 @@ export default {
       this.runTime = this.second
       this.$emit('stop')
       clearInterval(this.timer)
+      this.timer = null
     },
     getStr (second) {
       return this.runStr.replace(/\{([^{]*?)%s(.*?)\}/g, second)
@@ -65,7 +66,7 @@ export default {
   watch: {
     value (val) {
       this.start = val
-      if (val) {
+      if (val && !this.timer) {
         this.run()
       }
       this.$emit('input')
