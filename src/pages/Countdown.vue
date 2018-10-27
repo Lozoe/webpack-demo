@@ -19,7 +19,7 @@ export default {
     return {
       start: false,
       initStr: '倒计时开始',
-      second: 3,
+      second: 50,
       runStr: `{%s}秒结束`,
       resetStr: '重新点过'
     }

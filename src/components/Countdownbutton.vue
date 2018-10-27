@@ -1,7 +1,7 @@
 <template>
   <Button
     size="small"
-    :bgcolor="start ? '' : '#bdbdbd'"
+    :bgcolor="start ? '' : '#00bcd4'"
     :class="start ? 'btn-hollow' : ''"
     >{{btnText}}
     </Button>

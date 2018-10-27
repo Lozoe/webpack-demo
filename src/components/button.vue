@@ -5,6 +5,7 @@
 </template>
 
 <script type="text/babel">
+import { throttle } from '@/api/utils'
 export default {
   name: 'ComButton',
   props: {
@@ -39,8 +40,11 @@ export default {
     }
   },
   methods: {
-    buttonClick () {
+    trrigerClick () {
       this.$emit('button-click', this)
+    },
+    buttonClick () {
+      throttle(this.trrigerClick, 2000)
     }
   }
 }
@@ -48,7 +52,7 @@ export default {
 
 <style lang="scss" scoped>
 .com-button {
-  display: block;
+  /* display: block;
   margin: 0 auto;
   border-radius: 3px;
   outline: none;
@@ -83,6 +87,42 @@ export default {
     background-color: #fff;
     color: #888;
     text-transform: uppercase;
-  }
+  } */
+  display: block;
+    margin: 0 auto;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+
+    &.btn-normal {
+        width: 355px;
+        height: 39px;
+        font-size: 16px;
+    }
+
+    &.btn-small {
+        height: 24px;
+        padding: 0 6px;
+        line-height: 24px;
+        font-size: 14px;
+    }
+
+    &.btn-primary {
+        color: #fff;
+        background-color: #ff9800;
+    }
+
+    &.btn-gray {
+        color: #9e9e9e;
+        background-color: #dcdcdd;
+    }
+
+    &.btn-hollow {
+        opacity: 0.5;
+        border: 1px solid #bbb;
+        background-color: #fff;
+        color: #888;
+        text-transform: uppercase;
+    }
 }
 </style>
