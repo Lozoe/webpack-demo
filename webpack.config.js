@@ -21,6 +21,10 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/',
         filename: 'js/[name]-bundle-[hash:5].js'
+        // filename: (bundle) => {
+        //     console.log(bundle)
+        //     return 'aaa.js'
+        // }
     },
 
     // devtool: 'eval',
