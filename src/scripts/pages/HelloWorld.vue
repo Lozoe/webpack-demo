@@ -3,6 +3,7 @@
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <input type="text" v-focus>
+    <div v-demo:foo.a.b="msg"></div>
     <ul>
       <li>
         <a

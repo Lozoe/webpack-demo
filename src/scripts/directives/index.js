@@ -1,4 +1,6 @@
 import focus from './focus'
+import demo from './demo'
 export default {
-  focus
+  focus,
+  demo
 }
