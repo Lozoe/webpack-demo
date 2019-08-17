@@ -2,6 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+    <input type="text" v-focus>
     <ul>
       <li>
         <a
@@ -84,13 +85,15 @@
 </template>
 
 <script>
+import directives from '@/scripts/directives'
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
-  }
+  },
+  directives
 }
 </script>
 
