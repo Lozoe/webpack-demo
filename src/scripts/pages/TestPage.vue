@@ -1,6 +1,15 @@
 <template>
   <div class="hello">
-    1222233
+    <Button 
+      size="small"
+      bgcolor="#00bcd4"
+      class="btn-green"
+    >按钮一
+    </Button>
+    <Header 
+      title="头部文案"
+    >
+    </Header>
     <!-- <VirtualInput
       slot="field"
       class="vcode-input"
@@ -19,15 +28,20 @@
 
 <script>
 import VirtualInput from '@/scripts/components/VirtualInput'
+import Button from '@/scripts/components/Button'
+import Header from '@/scripts/components/Header'
 
 export default {
   name: 'TestPage',
-  components: { VirtualInput },
+  components: { 
+    VirtualInput,
+    Button,
+    Header
+  },
   data() {
     return {
       autofocus: true,
-      placeholder: '请输入',
-      cValue: '123'
+      placeholder: '请输入'
     }
   },
   computed: {

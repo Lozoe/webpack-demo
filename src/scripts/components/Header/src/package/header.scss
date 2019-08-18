@@ -1,0 +1,63 @@
+@import '@/styles/base/index.scss';
+.my-header {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    height: px2rem(88);
+    line-height: px2rem(88);
+    background-color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    display: flex;
+
+    .title {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: px2rem(36);
+        color: #212121;
+        flex: 1;
+    }
+
+    .regret,
+    .affirm {
+        display: inline-block;
+        width: px2rem(142);
+        height: px2rem(88);
+        line-height: px2rem(88);
+        cursor: pointer;
+    }
+
+    .regret {
+        left: 0;
+        padding-left: px2rem(26);
+        text-align: left;
+        font-size: px2rem(40);
+    }
+
+    .affirm {
+        right: 0;
+        text-align: right;
+        font-size: px2rem(28);
+        padding-right: px2rem(26);
+    }
+
+    .regret:active,
+    .affirm:active {
+        opacity: 0.5;
+    }
+
+    // TODO
+    .iconfont {
+        font-family: 'iconfont';
+        font-size: px2rem(36);
+        color: #212121;
+        font-style: normal;
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-stroke-width: 0.2px;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
