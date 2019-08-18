@@ -1,15 +1,46 @@
 <template>
   <div class="hello">
-    <Button 
+    <Button
       size="small"
       bgcolor="#00bcd4"
       class="btn-green"
+      @button-click="onButtonClick"
     >按钮一
     </Button>
-    <Header 
+    <Header
       title="头部文案"
     >
     </Header>
+    <Popup ref="pop" v-model="popShow" position="bottom" height="72%" :closeOnMasker="closeOnMasker">
+      <div slot="top">
+        这是头
+      </div>
+      <div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+        <div>这是一个pop测试内容</div>
+      </div>
+    </Popup>
     <!-- <VirtualInput
       slot="field"
       class="vcode-input"
@@ -30,29 +61,28 @@
 import VirtualInput from '@/scripts/components/VirtualInput'
 import Button from '@/scripts/components/Button'
 import Header from '@/scripts/components/Header'
+import Popup from '@/scripts/components/Popup'
 
 export default {
   name: 'TestPage',
-  components: { 
+  components: {
     VirtualInput,
     Button,
-    Header
+    Header,
+    Popup
   },
   data() {
     return {
       autofocus: true,
-      placeholder: '请输入'
-    }
-  },
-  computed: {
-    currentValue: {
-      get() {
-        return this.cValue
-      },
-      set(newValue) {
-        this.cValue = newValue
-        // this.$emit('input', newValue)
-      }
+      placeholder: '请输入',
+      /**
+       * pop测试数据 start
+      */
+      popShow: false,
+      closeOnMasker: true
+      /**
+       * pop测试数据 end
+      */
     }
   },
   methods: {
@@ -64,6 +94,9 @@ export default {
     },
     onBlur() {
       console.log('onBlur')
+    },
+    onButtonClick() {
+      this.popShow = true
     }
   }
 }

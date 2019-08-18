@@ -6,12 +6,52 @@
       <li><router-link :to="{ name: 'TestPage' }">TestPage</router-link></li>
     </ul>
     <router-view/>
+    <transition name="popup" mode="out-in">
+      <Keyboard v-if="keyboardOptions.show" @keyclick="onKeyboardClick" :type="keyboardOptions.type" :config="keyboardOptions.config"></Keyboard>
+    </transition>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      keyboardOptions: {
+        show: false,
+        type: 'tel',
+        config: {}
+      }
+    }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.$keyboard({
+        show: true,
+        type: 'tel',
+        config: { ok: true }
+      })
+    }, 300)
+  },
+  methods: {
+    onKeyboardClick(key) {
+      let opt = this.keyboardOptions
+      if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        opt.arrowClick && opt.arrowClick(key)
+      } else if (key === 'ArrowDown') {
+        opt.arrowClick && opt.arrowClick(key)
+        this.$keyboard(false)
+      } else if (key === 'Enter' || key === 'ok') {
+        let ret = opt.okClick && opt.okClick(key)
+        if (ret !== false) {
+          this.$keyboard(false)
+        }
+      } else {
+        opt.keyboardClick && opt.keyboardClick(key)
+      }
+    }
+  }
 }
 </script>
 
