@@ -9,6 +9,11 @@ const demo = {
       modifiers: ${s(binding.modifiers)}<br>
       vnode keys: ${Object.keys(vnode).join(', ')}
     `
+    {/* <div v-demo="{ color: 'white', text: 'hello!' }"></div>
+    el.innerHTML = `
+      direction: ${s(binding.value.color)}<br>
+      name: ${s(binding.value.text)}<br>
+    ` */}
   }
 }
 export default demo

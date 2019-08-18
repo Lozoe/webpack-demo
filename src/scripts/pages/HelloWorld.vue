@@ -4,6 +4,7 @@
     <h2>Essential Links</h2>
     <input type="text" v-focus>
     <div v-demo:foo.a.b="msg"></div>
+    <div v-dynamic:[direction]="msg"></div>
     <ul>
       <li>
         <a
