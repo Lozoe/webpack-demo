@@ -1,0 +1,86 @@
+@import '@/styles/base/index.scss';
+
+.keyboard {
+    font-family: PingFangSC-Regular;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 206px;
+    background: #e0e0e0;
+    z-index: 10000;
+    .kb-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .kb-col {
+            flex: 1;
+            box-shadow: inset 0 -2px 0 0 #9E9E9E;
+            width: px2rem(172);
+            margin-left: 3px;
+            margin-right: 3px;
+            background-color: #fff;
+            border-radius: 5px;
+            letter-spacing: -0.85px;
+            font-size: 25px;
+            text-align: center;
+        }
+        .kb-col:active { 
+            background-color: #f5f5f5;
+        }
+        .kb-icon {
+            color: $fontColor;
+            font-size: 32px;
+        }
+    }
+    .kb-num-left {
+        width: px2rem(552);
+        height: 200px;
+        .kb-row {
+            width: px2rem(552);
+            height: 50px;
+            .kb-col {
+                height: 44px;
+                line-height: 44px;
+            }
+        }
+    }
+    .kb-num-right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: px2rem(184);
+        .kb-row {
+            width: px2rem(184);
+            height: 100px;
+            .kb-col {
+                height: 94px;
+                line-height: 94px;
+            }
+        }
+        .kb-row:last-child {
+            .kb-col {
+                background: #00BCD4;
+                font-size: 21px;
+                color: #fff;
+                // color: rgba(255,255,255,.3);
+            }
+            .kb-disabled{
+                color: rgba(255,255,255,.3);
+            }
+        }
+    }
+    /* popup */
+    .popup-enter, .popup-leave-to {
+        -webkit-transform: translate(0, 100%);
+        transform: translate(0, 100%);
+    }
+
+    .popup-enter-active, .popup-leave-active {
+        transition: all .3s ease;
+    }
+}

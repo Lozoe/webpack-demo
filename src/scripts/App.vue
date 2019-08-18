@@ -27,12 +27,21 @@ export default {
   },
   mounted() {
     setTimeout(() => {
-      this.$keyboard({
+      //  this.$keyboard({
+      //    show: true,
+      //    type: this.type,
+      //    config: { ok: this.curVal.length > 0 },
+      //    keyboardClick: data => this.onKeyClick(data),
+      //    arrowClick: data => this.onArrowClick(data),
+      //    okClick: data => this.onOkClick(data),
+      //    globalClick: e => this.globalClick(e)
+      //  })
+      this.keyboardOptions = {
         show: true,
         type: 'tel',
         config: { ok: true }
-      })
-    }, 300)
+      }
+    }, 1000)
   },
   methods: {
     onKeyboardClick(key) {
